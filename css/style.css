@@ -1,0 +1,289 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.header{
+    text-align: center;
+}
+
+.title_img{
+    max-width: 1000px;
+    width: 100%;
+}
+
+.weatherMain{
+    display: flex;
+    font-size: 25px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    height: 40px;
+}
+
+main {
+    font-family: 'Itim', "Mplus 1p" sans-serif;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+
+#photo-area.viewport {
+    height: 240px;
+    width:320px;
+    }
+    
+    #photo-area.viewport canvas, video {
+        float: left;
+        width:320px;
+        height: 240px;
+    }
+    
+    #photo-area.viewport canvas.drawingBuffer, video.drawingBuffer {
+    margin-left: -320px;
+    }
+
+
+
+.cardzone{
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+section h2 {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+section h3 {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.player {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.vs{
+    font-size: 60px;
+    color: darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enemy {
+    background-color:#333;
+    color: #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.hp {
+    display: flex;
+    justify-content: center;
+    margin-top:  10px;
+}
+
+.hp > div:first-of-type::after{
+    content: "/";
+    margin: 0 5px;
+}
+
+
+#prepalation{
+    display: flex;
+    font-size: 30px;
+    font: bold;
+    margin: 20px auto;
+    padding: 40px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    height: 80px;
+}
+
+.prepalation.deactive{
+    display: none;
+}
+
+.inline{
+    display: block;
+    width: 300px;
+    margin: 10px auto;
+    padding: 21px 0;
+    background-color: #ffd61a;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+}
+
+.inline:hover{
+    background-color: #bd9b03;
+}
+
+.inline.deactive {
+    pointer-events: none;
+    opacity: .5;
+}
+
+
+.start{
+    display: block;
+    width: 300px;
+    margin: 10px auto;
+    padding: 21px 0;
+    background-color: #f87437;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.start:hover{
+    background-color: #a34c24;
+}
+
+.start.deactive {
+    pointer-events: none;
+    opacity: .5;
+}
+
+#battle{
+    display: flex;
+    font-size: 30px;
+    margin: 10 auto;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    width: 100%;
+    height: 245px;
+}
+
+.battle.deactive{
+    display: none;
+}
+
+
+.message{
+    float: left;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:antiquewhite;
+    color:#333;
+    border-style: dotted;
+    border-radius: 5px;
+    border-color: #fff;
+    border-width: 5px;
+    align-items: center;
+    max-width: 700px;
+    width: 100%;
+    height: 200px;
+}
+
+.action{
+    float: right;
+    display:flex;
+    flex-flow: column;
+    justify-content:space-around;
+    font-size: 30px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:antiquewhite;
+    color:#333;
+    border-style: dotted;
+    border-radius: 5px;
+    border-color: #fff;
+    border-width: 5px;
+    align-items: center;
+    max-width: 200px;
+    width: 100%;
+    height: 200px;
+}
+
+
+.attack {
+    margin: 10px auto ;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;    /*左右中央合わせ*/
+    align-items: center;        /*上下中央合わせ*/
+    background-color: #f44;
+    color: #fff;
+    border: 0;                  /*ボーダーラインなくす*/
+    outline: none;              /*アウトラインの線なくす*/
+    font-size: 20px;
+    border-radius: 5px;         /*角に丸み*/
+    cursor: pointer;            /*ポインタ手のマークに*/
+}
+
+.attack.deactive {
+    pointer-events: none;
+    opacity: .2;
+}
+
+
+.spacial {
+    margin: 10px auto ;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;    /*左右中央合わせ*/
+    align-items: center;        /*上下中央合わせ*/
+    background-color: #f44;
+    color: #fff;
+    border: 0;                  /*ボーダーラインなくす*/
+    outline: none;              /*アウトラインの線なくす*/
+    font-size: 20px;
+    border-radius: 5px;         /*角に丸み*/
+    cursor: pointer;            /*ポインタ手のマークに*/
+    background:linear-gradient(45deg, #cef106,#f8c51e,#c4a80c);/*グラデーションを定義*/
+    background-size: 200% 200%;/*サイズを大きくひきのばす*/
+	animation: bggradient 5s ease infinite;
+}
+
+.spacial.deactive {
+    pointer-events: none;
+    opacity: .2;
+}
+
+
+@keyframes bggradient{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

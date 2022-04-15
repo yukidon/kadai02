@@ -1,1 +1,122 @@
-<h1>aaa</h1>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ちいかわバーコードバトラー</title>
+    <meta name="description" content="ページのディスクリプション">
+
+    <meta property="og:title" content="ページの タイトル" />
+    <meta property="og:description" content="ページのディスクリプション" />
+    <meta property="og:type" content="ページの種類" />
+    <meta property="og:url" content="ページの URL" />
+    <meta property="og:image" content="サムネイル画像の URL" />
+    <meta property="og:site_name" content="サイト名" />
+    <meta property="og:locale" content="ja_JP"  />
+
+    <meta name="format-detection" content="telephone=no">
+    <link rel=”apple-touch-icon” href="img/fabi.png">
+    <link rel="icon" href="img/fabi.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modaal.min.css">
+
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+        <div class="header__nav text-center">
+
+            <img src="img/titile1.png" alt="ゲームタイトルロゴ" class="title_img">
+            
+                <ul class="weatherMain">
+                  <li class="location">現在地</li>
+                    <li class="weather">天気</li>
+                    <li class="dayWeather"></li>
+                    <img class="dayWeatherIcon">
+                </ul>
+
+        </div>
+      </header>
+
+
+    <main>
+
+
+      <div class="cardzone">
+
+
+        <section class="player">
+          <h3 id="playerName">あなたのカード</h3>
+          <div class="hp">
+              <div id="currentPlayerHp">?</div><div id="maxPlayerHp">?</div>
+          </div>
+          <img src="img/question.png" alt="" id="card_a">
+        </section>
+
+        <p class="vs">VS</p>
+
+        <section class="enemy">
+            <h2 id="enemyName">CPUのカード</h2>
+            
+            <div class="hp">
+              <div id="currentEnemyHp">?</div><div id="maxEnemyHp">?</div>
+            </div>
+            <img src="img/question.png" alt="" id="card_b">
+        </section>
+
+      </div>
+
+        <section id="prepalation">
+
+          <a href="#inline" class="inline">バーコード読取</a>
+          <div id="inline" style="display:none;">
+            <h1>バーコード</h1>
+            <div id="photo-area" class="viewport"></div>
+          </div>
+
+          <a href="#start" class="start">討伐に出かける</a>
+          </div>
+
+        </section>
+
+        <section id="battle" style="display: none">
+
+          <section class="message">討伐開始！
+          </section>
+
+          <section class="action">
+            <button id="attack" class="attack">攻撃</button>
+            <button id="spacial" class="spacial deactive">必殺技</button>
+          </section>
+
+        </section>
+
+
+
+    </main>
+  
+    <footer>
+
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/quagga.min.js" type="text/javascript"></script>
+    <script src="js/modaal.min.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+</body>
+
+
+</html>

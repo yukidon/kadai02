@@ -38,13 +38,13 @@
     <header class="header">
         <div class="header__nav text-center">
 
-            <img src="img/titile1.png" alt="ゲームタイトルロゴ" class="title_img">
+            <img src="img/titile.png" alt="ゲームタイトルロゴ" class="title_img">
             
-                <ul class="weatherMain">
+                <ul id="weatherMain">
                   <li class="location">現在地</li>
-                    <li class="weather">天気</li>
-                    <li class="dayWeather"></li>
-                    <img class="dayWeatherIcon">
+                  <li class="weather">天気</li>
+                  <li class="dayWeather"></li>
+                  <img class="dayWeatherIcon">
                 </ul>
 
         </div>
@@ -65,7 +65,7 @@
           <img src="img/question.png" alt="" id="card_a">
         </section>
 
-        <p class="vs">VS</p>
+        <img src="img/vs.png" alt="VS文字の画像" class="vs"></img>
 
         <section class="enemy">
             <h2 id="enemyName">CPUのカード</h2>
@@ -86,19 +86,19 @@
             <div id="photo-area" class="viewport"></div>
           </div>
 
-          <a href="#start" class="start">討伐に出かける</a>
+          <a href="#start" class="start deactive">討伐に出かける</a>
           </div>
 
         </section>
 
         <section id="battle" style="display: none">
 
-          <section class="message">討伐開始！
+          <section id="message">討伐開始！
           </section>
 
           <section class="action">
             <button id="attack" class="attack">攻撃</button>
-            <button id="spacial" class="spacial deactive">必殺技</button>
+            <button id="special" class="special deactive">必殺技</button>
           </section>
 
         </section>

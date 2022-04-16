@@ -1,31 +1,30 @@
+//グローバル変数の設定
 var weatherType = "現在の天気"
-console.log(weatherType)
 var code = "バーコード"
+var messege = "討伐開始！"
 var ressult8 = "味方のカード"
 
-const damageRange = 0.2;
+var damageRange = 0.2;
 
-const playerData = {
+var playerData = {
     name: "あなたのカード",
     hp: "?",
     attack: 5,
     deffence: 2
 }
 
-const enemyData = {
+var enemyData = {
     name: "CPUのカード",
     hp: "?",
     attack: 4,
     deffence: 1
 }
 
-
+//天気情報の生成
 $(document).ready(function () {
     'use strict'
 
-
     const APIKEY = "4bf6ecf1671e9b03b2bfa351280f4766";
-
 
     //現在位置の取得ができるかどうか
     if (navigator.geolocation) {
@@ -124,17 +123,11 @@ $(document).ready(function () {
             }
         });
 
-
     }
-
 
 }());
 
-console.log(weatherType)
-
-
-// モーダルウィンドウ
-
+// モーダルウィンドウでバーコード読み取り→playerカードを生成
 $('.inline').modaal({
 	before_open: function() {
 		alert('カメラを起動します');
@@ -142,6 +135,7 @@ $('.inline').modaal({
 	after_close: mikata
 });
 
+//player生成の関数
 function mikata() {
     // 数字抜出し
     const result1 = code.charAt(1);
@@ -175,64 +169,64 @@ function mikata() {
     if (result8 === 1){
         playerData["name"] = "モモンガ"
         playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["attack"] = 4
+        playerData["deffence"] = 3
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata1.png';
     } else if (result8 === 2) {
         playerData["name"] = "シーサー"
         playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["attack"] = 5
+        playerData["deffence"] = 3
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata2.png';
     } else if (result8 === 3){
         playerData["name"] = "むちゃうマン"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 35
+        playerData["attack"] = 5
+        playerData["deffence"] = 4
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata3.png';
     } else if (result8 === 4){
         playerData["name"] = "栗まんじゅう"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 40
+        playerData["attack"] = 6
+        playerData["deffence"] = 5
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata4.png';
     } else if (result8 === 5){
         playerData["name"] = "オデ"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 45
+        playerData["attack"] = 8
+        playerData["deffence"] = 3
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata5.png';
     } else if (result8 === 6){
         playerData["name"] = "うさぎ"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 40
+        playerData["attack"] = 8
+        playerData["deffence"] = 8
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata6.png';
     } else if (result8 === 7){
         playerData["name"] = "ハチワレ"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 45
+        playerData["attack"] = 7
+        playerData["deffence"] = 10
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata7.png';
     } else if (result8 === 8){
         playerData["name"] = "討伐ちいかわ"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 45
+        playerData["attack"] = 10
+        playerData["deffence"] = 8
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata8.png';
     } else if (result8 === 9){
         playerData["name"] = "ラッコ"
-        playerData["hp"] = 30
-        playerData["attack"] = 3
-        playerData["deffence"] = 0
+        playerData["hp"] = 50
+        playerData["attack"] = 10
+        playerData["deffence"] = 10
         $("h3").css("color", "black");
         document.getElementById('card_a').src = 'img/mikata9.png';
     } else {
@@ -246,6 +240,9 @@ function mikata() {
     insertText("playerName", playerData["name"])
     insertText("currentPlayerHp", playerData["hp"])
     insertText("maxPlayerHp", playerData["hp"])
+
+    //討伐に出かけるのボタンをactiveに
+    $(".start").removeClass("deactive");
 }
 
 // スキャナー
@@ -340,18 +337,11 @@ const startScanner = () => {
         console.log(code);
         $("h1").text(code);
 
-
         // カメラ停止
         console.log("stop");
         Quagga.stop();
-
-        document.getElementsByClassName("inline").classList.add("deactive")
-        document.getElementsByClassName("start").classList.remove("deactive")
     })
 }
-
-console.log(code)
-
 
 
 // 勝負ボタン後の挙動
@@ -361,212 +351,368 @@ console.log(code)
 //     after_open: kekka
 // });
 
+// enemyを生成して戦闘画面を立ち上げ
+
+//画面表示用の変数を設定
+const displayChange0 = document.getElementById("weatherMain");
 const displayChange1 = document.getElementById("prepalation");
 const displayChange2 = document.getElementById("battle");
 
-
+//startをクリックしたときの挙動
 $(".start").on("click", function teki() {
 
-    // enemyの生成
+    var rondom = "敵の数字"
+
+    // 天気に応じて乱数を発生させる
+    if (weatherType === "Clear") {
+        random = Math.floor(Math.random()*7);
+        console.log(random, "晴れの日ランダム数字")
+    } else if (weatherType === "Rain") {
+        random = Math.floor(Math.random()*7 + 2);
+        console.log(random, "雨の日ランダム数字")
+    } else if (weatherType === "Clouds") {
+        random = Math.floor(Math.random()*9);
+        console.log(random, "曇りの日ランダム数字")
+    } else if (weatherType === "Snow") {
+        random = Math.floor(Math.random()*5 + 4);
+        console.log(random, "雪の日ランダム数字")
+    } else {
+        random = Math.floor(Math.random()*9);
+        console.log(random, "その他の日ランダム数字")
+    }
+    console.log(weatherType);
+    console.log(random);
+
+    
+    if (random === 1){
+        enemyData["name"] = "たまごボーロ"
+        enemyData["hp"] = 30
+        enemyData["attack"] = 4
+        enemyData["deffence"] = 3
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki1.png';
+    } else if (random === 2) {
+        enemyData["name"] = "ありじごく"
+        enemyData["hp"] = 30
+        enemyData["attack"] = 5
+        enemyData["deffence"] = 3
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki2.png';
+    } else if (random === 3){
+        enemyData["name"] = "アミアブラ"
+        enemyData["hp"] = 35
+        enemyData["attack"] = 5
+        enemyData["deffence"] = 4
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki3.png';
+    } else if (random === 4){
+        enemyData["name"] = "きめら"
+        enemyData["hp"] = 40
+        enemyData["attack"] = 8
+        enemyData["deffence"] = 3
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki4.png';
+    } else if (random === 5){
+        enemyData["name"] = "とり"
+        enemyData["hp"] = 45
+        enemyData["attack"] = 3
+        enemyData["deffence"] = 8
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki5.png';
+    } else if (random === 6){
+        enemyData["name"] = "なんだって"
+        enemyData["hp"] = 40
+        enemyData["attack"] = 8
+        enemyData["deffence"] = 8
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki6.png';
+    } else if (random === 7){
+        enemyData["name"] = "大型きめら"
+        enemyData["hp"] = 45
+        enemyData["attack"] = 7
+        enemyData["deffence"] = 10
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki7.png';
+    } else if (random === 8){
+        enemyData["name"] = "わしの力じゃ"
+        enemyData["hp"] = 45
+        enemyData["attack"] = 10
+        enemyData["deffence"] = 8
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki8.png';
+    } else if (random === 9){
+        enemyData["name"] = "カブト王"
+        enemyData["hp"] = 50
+        enemyData["attack"] = 10
+        enemyData["deffence"] = 10
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki9.png';
+    } else {
+        enemyData["name"] = "ゴブリン"
+        enemyData["hp"] = 30
+        enemyData["attack"] = 3
+        enemyData["deffence"] = 0
+        $("h2").css("color", "White");
+        document.getElementById('card_b').src = 'img/teki0.png';
+    }
+    insertText("enemyName", enemyData["name"])
+    insertText("currentEnemyHp", enemyData["hp"])
+    insertText("maxEnemyHp", enemyData["hp"])
+
+    //weatherMainとprepalationを非表示にして、Battleを表示に
+    if(getComputedStyle(weatherMain).display == "none"){
+        displayChange0.style.display = "block";
+    } else {
+        displayChange0.style.display = "none";
+    }
+
+    if(getComputedStyle(prepalation).display == "none"){
+        displayChange1.style.display = "block";
+    } else {
+        displayChange1.style.display = "none";
+    }
+
+    if(getComputedStyle(battle).display == "none"){
+        displayChange2.style.display = "block";
+    } else {
+        displayChange2.style.display = "none";
+    }
+})
 
 
-            console.log(weatherType);
-            var rondom = "敵の数字"
 
-            // 天気に応じて乱数を発生させる
-            if (weatherType === "Clear") {
-                random = Math.floor(Math.random()*7);
-                console.log(random, "晴れの日ランダム数字")
-            } else if (weatherType === "Rain") {
-                random = Math.floor(Math.random()*7 + 2);
-                console.log(random, "雨の日ランダム数字")
-            } else if (weatherType === "Clouds") {
-                random = Math.floor(Math.random()*9);
-                console.log(random, "曇りの日ランダム数字")
-            } else if (weatherType === "Snow") {
-                random = Math.floor(Math.random()*5 + 4);
-                console.log(random, "雪の日ランダム数字")
-            } else {
-                random = Math.floor(Math.random()*9);
-                console.log(random, "その他の日ランダム数字")
-            }
-            console.log(weatherType);
-            console.log(random);
+//テキスト挿入関数
+function insertText(id, text) {
+    document.getElementById(id).textContent = text;
+}
 
-            
-            if (random === 1){
-                enemyData["name"] = "たまごボーロ"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki1.png';
-            } else if (random === 2) {
-                enemyData["name"] = "ありじごく"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki2.png';
-            } else if (random === 3){
-                enemyData["name"] = "アミアブラ"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki3.png';
-            } else if (random === 4){
-                enemyData["name"] = "きめら"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki4.png';
-            } else if (random === 5){
-                enemyData["name"] = "とり"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki5.png';
-            } else if (random === 6){
-                enemyData["name"] = "なんだって"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki6.png';
-            } else if (random === 7){
-                enemyData["name"] = "大型きめら"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki7.png';
-            } else if (random === 8){
-                enemyData["name"] = "わしの力じゃ"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki8.png';
-            } else if (random === 9){
-                enemyData["name"] = "カブト王"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki9.png';
-            } else {
-                enemyData["name"] = "ゴブリン"
-                enemyData["hp"] = 30
-                enemyData["attack"] = 3
-                enemyData["deffence"] = 0
-                $("h2").css("color", "White");
-                document.getElementById('card_b').src = 'img/teki0.png';
-            }
-            insertText("enemyName", enemyData["name"])
-            insertText("currentEnemyHp", enemyData["hp"])
-            insertText("maxEnemyHp", enemyData["hp"])
+//ダメージ計算関数
+function damageCalculation(attack, deffence) {
+    const maxDamage = attack * (1 + damageRange);
+    const minDamage = attack * (1 - damageRange);
+    const attackDamage = Math.floor(Math.random() * (maxDamage - minDamage) + minDamage);
 
-            if(getComputedStyle(prepalation).display == "none"){
-                displayChange1.style.display = "block";
-            } else {
-                displayChange1.style.display = "none";
-            }
+    const damage = attackDamage - deffence;
 
+    if (damage < 1) {
+        return 0
+    } else {
+        return damage;
+    }
+}
 
-            if(getComputedStyle(battle).display == "none"){
-                displayChange2.style.display = "block";
-            } else {
-                displayChange2.style.display = "none";
-            }
+var special = false;
+var specialGain = false;
+var specialRemain = true;
 
+//攻撃の挙動
+document.getElementById("attack").addEventListener("click", function() {
+    let endGame = false;
 
-        })
+    $(".attack").addClass("deactive");
+    $(".special").addClass("deactive");
 
+    //味方の攻撃挙動
+    insertText("message", playerData["name"] + "の攻撃！")
 
+    setTimeout(() => {
 
-        
-        function insertText(id, text) {
-            document.getElementById(id).textContent = text;
-        }
-        
-        function damageCalculation(attack, deffence) {
-            const maxDamage = attack * (1 + damageRange);
-            const minDamage = attack * (1 - damageRange);
-            const attackDamage = Math.floor(Math.random() * (maxDamage - minDamage) + minDamage);
-        
-            const damage = attackDamage - deffence;
-        
-            if (damage < 1) {
-                return 0
-            } else {
-                return damage;
-            }
-        }
-        
-        
-        insertText("playerName", playerData["name"])
-        insertText("currentPlayerHp", playerData["hp"])
-        insertText("maxPlayerHp", playerData["hp"])
-        
-        insertText("enemyName", enemyData["name"])
+        //味方の与ダメージを計算し、敵のHPを減らす
+        const playerDamage = damageCalculation(playerData["attack"], enemyData["deffence"]);
+        enemyData["hp"] -= playerDamage /* =の左に-を置く→左の変数を、左の変数-右側の数値で再定義*/
         insertText("currentEnemyHp", enemyData["hp"])
-        insertText("maxEnemyHp", enemyData["hp"])
-        
-        document.getElementById("attack").addEventListener("click", function() {
-            let endGame = false;
-        
-            const playerDamage = damageCalculation(playerData["attack"], enemyData["deffence"]);
-            const enemyDamage = damageCalculation(enemyData["attack"], playerData["deffence"]);
-        
-            enemyData["hp"] -= playerDamage /* =の左に-を置く→左の変数を、左の変数-右側の数値で再定義*/
-            playerData["hp"] -= enemyDamage
-        
+        insertText("message", playerData["name"] + "は" + playerDamage + "のダメージを与えた！")
+        //（敵のカードのバックがちかちかする＋音を入れたい）
+        $(".enemy").addClass("damagebrink");
+
+        if (enemyData["hp"] <= 0) {
+
+            endGame = true;
+    
+            enemyData["hp"] = 0;
             insertText("currentEnemyHp", enemyData["hp"])
+
+            insertText("message", playerData["name"] + "は討伐に成功した！")
+
+            $(".attack").addClass("deactive");
+            $(".special").addClass("deactive");
+    
+            clearTimeout();
+        }
+
+    },1000);
+
+
+    setTimeout(() => {
+
+        //敵の攻撃挙動
+        insertText("message", enemyData["name"] + "の攻撃！")
+        $(".enemy").removeClass("damagebrink");
+
+    },2000);
+
+    setTimeout(() => {
+        //味方の与ダメージを計算し、敵のHPを減らす
+        const enemyDamage = damageCalculation(enemyData["attack"], playerData["deffence"]);
+        playerData["hp"] -= enemyDamage
+        insertText("currentPlayerHp", playerData["hp"])
+        insertText("message", playerData["name"] + "は" + enemyDamage + "のダメージを受けた！")
+        //（味方のカードのバックがちかちかする＋音を入れたい）
+        $(".player").addClass("damagebrink");
+
+        if (playerData["hp"] <= 0){
+
+            endGame = true;
+    
+            playerData["hp"] = 0;
             insertText("currentPlayerHp", playerData["hp"])
+
+            insertText("message", enemyData["name"] + "は討伐に失敗した・・・")
+
+            $(".attack").addClass("deactive");
+            $(".special").addClass("deactive");
+    
+            clearTimeout();
+        }
+    
+
+    },3000);
+
+    $(".player").removeClass("damagebrink");
+
+    if (playerData["hp"] <= 10 && specialGain === false && specialRemain === true) {
+
+        setTimeout(() => {
         
-            if (enemyData["hp"] <= 0) {
-                alert("勝利")
-                endGame = true;
-        
-                enemyData["hp"] = 0;
-                insertText("currentEnemyHp", enemyData["hp"])
-        
-            } else if (playerData["hp"] <= 0){
-                alert("敗北")
-                endGame = true;
-        
-                playerData["hp"] = 0;
-                insertText("currentPlayerHp", playerData["hp"])
-        
+            insertText("message", playerData["name"] + "は必殺技が使えるようになった")
+            special = true;
+            specialGain === true
+
+        },4000);
+
+        setTimeout(() => {
+
+            //リピート
+            insertText("message", playerData["name"] + "はどうする？")
+            $(".attack").removeClass("deactive");
+
+            if (special === true && specialRemain === true) {
+                $(".special").removeClass("deactive");
+                }
+        },5000);
+
+    } else {
+        setTimeout(() => {
+
+            //リピート
+            insertText("message", playerData["name"] + "はどうする？")
+            $(".attack").removeClass("deactive");
+    
+            if (special === true) {
+                $(".special").removeClass("deactive");
             }
+    
+        },4000);
+
+    }
+
+})
+
+//必殺技の挙動
+document.getElementById("special").addEventListener("click", function() {
+    let endGame = false;
+
+    $(".attack").addClass("deactive");
+    $(".special").addClass("deactive");
+
+    //味方の攻撃挙動
+    insertText("message", playerData["name"] + "の必殺技！！")
+
+    setTimeout(() => {
+
+        //味方の与ダメージを計算し、敵のHPを減らす
+        //キャラごとに動作違う（IFでDamage計算分けする）・メッセージ出す（Dataにコメント持たせる）、POPUP出す
+        const playerDamage = 20;
+
+        //必殺技残数なくす
+        specialRemain = false;
         
-            if (endGame) {
-            this.classList.add("deactive");    /* this は現在のイベント発生の要素= document.getElementById("attack")*/
-            }
-        })
-        
+        enemyData["hp"] -= playerDamage /* =の左に-を置く→左の変数を、左の変数-右側の数値で再定義*/
+        insertText("currentEnemyHp", enemyData["hp"])
+        insertText("message", playerData["name"] + "は" + playerDamage + "の大ダメージを与えた！")
+        //（敵のカードのバックがちかちかする＋音を入れたい）
+        $(".enemy").addClass("damagebrink");
+
+        battleResult
+
+    },1000);
 
 
+    setTimeout(() => {
 
+        //敵の攻撃挙動
+        insertText("message", enemyData["name"] + "の攻撃！")
+        $(".enemy").removeClass("damagebrink");
 
+    },2000);
 
+    setTimeout(() => {
+        //味方の与ダメージを計算し、敵のHPを減らす
+        const enemyDamage = damageCalculation(enemyData["attack"], playerData["deffence"]);
+        playerData["hp"] -= enemyDamage
+        insertText("currentPlayerHp", playerData["hp"])
+        insertText("message", playerData["name"] + "は" + enemyDamage + "のダメージを受けた！")
+        //（味方のカードのバックがちかちかする＋音を入れたい）
+        $(".player").addClass("damagebrink");
 
+        battleResult
 
+    },3000);
 
+    $(".player").removeClass("damagebrink");
 
+    setTimeout(() => {
 
+        //リピート
+        insertText("message", playerData["name"] + "はどうする？")
+        $(".attack").removeClass("deactive");
 
+        if (special === true) {
+            $(".special").removeClass("deactive");
+        }
 
+    },4000);
 
-
-
-
+})
 
 
     // 勝敗判定関数
+function battleResult () {
+    if (enemyData["hp"] <= 0) {
+        alert("勝利")
+        endGame = true;
+
+        enemyData["hp"] = 0;
+        insertText("currentEnemyHp", enemyData["hp"])
+
+    } else if (playerData["hp"] <= 0){
+        alert("敗北")
+        endGame = true;
+
+        playerData["hp"] = 0;
+        insertText("currentPlayerHp", playerData["hp"])
+
+    }
+
+    if (endGame) {
+        $(".attack").addClass("deactive");
+        $(".special").addClass("deactive");
+
+    clearTimeout();
+    }
+}
+
+//POPUP用材料（動いていない関数）
     function kekka() {
         if(result8 > random){
             $("h4").text("勝ち");

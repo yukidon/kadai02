@@ -19,7 +19,7 @@ a {
     width: 100%;
 }
 
-.weatherMain{
+#weatherMain{
     display: flex;
     font-size: 25px;
     margin: 0 auto;
@@ -65,6 +65,7 @@ main {
     display: flex;  
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     padding: 0 40px;
 }
 
@@ -87,11 +88,9 @@ section h3 {
 }
 
 .vs{
-    font-size: 60px;
-    color: darkred;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 150px;
+    max-height: 150px;
+
 }
 
 .enemy {
@@ -105,6 +104,7 @@ section h3 {
     display: flex;
     justify-content: center;
     margin-top:  10px;
+    font-size: 30px;
 }
 
 .hp > div:first-of-type::after{
@@ -191,7 +191,7 @@ section h3 {
 }
 
 
-.message{
+#message{
     float: left;
     font-size: 30px;
     margin: 0 auto;
@@ -251,7 +251,7 @@ section h3 {
 }
 
 
-.spacial {
+.special {
     margin: 10px auto ;
     width: 150px;
     height: 40px;
@@ -265,12 +265,12 @@ section h3 {
     font-size: 20px;
     border-radius: 5px;         /*角に丸み*/
     cursor: pointer;            /*ポインタ手のマークに*/
-    background:linear-gradient(45deg, #cef106,#f8c51e,#c4a80c);/*グラデーションを定義*/
+    background:linear-gradient(45deg, #06f11a,#f8c51e,#db7704);/*グラデーションを定義*/
     background-size: 200% 200%;/*サイズを大きくひきのばす*/
 	animation: bggradient 5s ease infinite;
 }
 
-.spacial.deactive {
+.special.deactive {
     pointer-events: none;
     opacity: .2;
 }
@@ -286,4 +286,18 @@ section h3 {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.damagebrink {
+    animation: flash 1s ease 1;
+}
+
+@keyframes flash {
+    0%,100% {
+        opacity: 1;
+    }
+    
+    50% {
+        opacity: 0;
+    }
 }
